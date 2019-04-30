@@ -2,9 +2,11 @@ import { createStore, applyMiddleware ,combineReducers} from 'redux';
 import thunk from 'redux-thunk' 
 import { logger } from 'redux-logger';
 
-const initialState = {};
-const reducers = [];
+const initialState = {state:'state'};
+const rootReducer = combineReducers({
+    //reducers here
+});
 
-const store = createStore(combineReducers({...reducers}),initialState, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer,initialState, applyMiddleware(thunk, logger));
 
 export default store;
