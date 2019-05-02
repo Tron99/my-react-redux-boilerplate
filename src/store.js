@@ -4,6 +4,7 @@ import { logger } from 'redux-logger';
 
 const initialState = {state:'state'};
 const rootReducer = combineReducers({
+    
     //reducers here
 });
 
