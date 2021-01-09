@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { combineReducers, createStore, compose } from 'redux';
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -12,6 +12,7 @@ import {
   ReactReduxFirebaseProvider,
   firebaseReducer
 } from 'react-redux-firebase';
+import thunk from 'redux-thunk';
 
 import {
   createFirestoreInstance,
@@ -36,12 +37,14 @@ const rrfConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 
-const initialSate = { title: 'chatRoom' }
+let middleware = [thunk];
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer
-}), initialSate, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+}), { title: 'chatRoom' }, composeEnhancers(applyMiddleware(...middleware))
 )
 
 const rrfProps = {
