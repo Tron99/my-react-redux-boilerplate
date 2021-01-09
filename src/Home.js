@@ -12,6 +12,7 @@ const Home = (props) =>{
     return (
         <div>
             {props.pageTitle}
+            <button type="button" class="btn btn-primary">Primary</button>
         </div>
     )
 
