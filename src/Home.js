@@ -1,19 +1,49 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux'
+import { LoginForm, FormItem ,PasswordInput,TextInput,CheckBoxInput} from './styledComponents';
+
+const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+};
+
+const tailLayout = {
+    wrapperCol: { offset: 8, span: 16 },
+};
 
 
+const Home = (props) => {
 
-
-const Home = (props) =>{
-
-    useEffect(()=>{
+    useEffect(() => {
         console.log("propsHere", props.pageTitle)
     })
     return (
-        <div>
-            {props.pageTitle}
-            <button type="button" class="btn btn-primary">Primary</button>
-        </div>
+        <LoginForm  {...layout}>
+            <FormItem
+                label="Username"
+                name="username"
+                rules={[{ required: true, message: 'Please input your username!' }]}
+            >
+                <TextInput />
+            </FormItem>
+
+            <FormItem
+                label="Password"
+                name="password"
+                rules={[{ required: true, message: 'Please input your password!' }]}
+            >
+                <PasswordInput />
+            </FormItem>
+            <FormItem {...tailLayout} name="remember" valuePropName="checked">
+                <CheckBoxInput>Remember me</CheckBoxInput>
+            </FormItem>
+            <FormItem {...tailLayout}>
+                <Button type="primary" htmlType="submit">
+                    Submit
+                </Button>
+            </FormItem>
+
+        </LoginForm>
     )
 
 }
@@ -21,9 +51,8 @@ const Home = (props) =>{
 const mapStateToProps = state => {
     const { title } = state
     return {
-      pageTitle: title
+        pageTitle: title
     }
-  }
-  
+}
+
 export default connect(mapStateToProps, null)(Home);
-  

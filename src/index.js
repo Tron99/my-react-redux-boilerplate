@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GlobalStyle from './globalStyles'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
@@ -59,6 +60,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
+      <GlobalStyle />
         <App />
       </ReactReduxFirebaseProvider>
     </Provider>
